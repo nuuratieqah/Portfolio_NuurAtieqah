@@ -3,9 +3,10 @@ CREATE SCHEMA IF NOT EXISTS inventory_control_management;
 
 DROP TABLE IF EXISTS inventory_control_management.user_login;
 CREATE TABLE IF NOT EXISTS inventory_control_management.user_login (
-	user_id TEXT PRIMARY KEY,
-    user_password TEXT,
-    first_name TEXT,
+	user_reference TEXT PRIMARY KEY,
+	user_id TEXT,
+    	user_password TEXT,
+    	first_name TEXT,
 	last_name TEXT,
 	sign_up_on DATE,
 	email_id TEXT
