@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS bravissimo_inventory_control_management.supplier (
 DROP TABLE IF EXISTS bravissimo_inventory_control_management.purchase_orders;
 CREATE TABLE IF NOT EXISTS bravissimo_inventory_control_management.purchase_orders (
 	order_id TEXT PRIMARY KEY,
-	supplier_id TEXT REFERENCES inventory_control_management.supplier (supplier_id),
-	supplier_product TEXT REFERENCES inventory_control_management.supplier (supplier_product),
+	supplier_id TEXT REFERENCES bravissimo_inventory_control_management.supplier (supplier_id),
+	supplier_product TEXT REFERENCES bravissimo_inventory_control_management.supplier (supplier_product),
 	order_date DATE,
 	quantity INT,
 	delivery_date DATE,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS bravissimo_inventory_control_management.product_items
 	item_description TEXT,
 	item_image JSON,
 	bra_line_name TEXT,
-	supplier_id TEXT REFERENCES inventory_control_management.supplier (supplier_id),
+	supplier_id TEXT REFERENCES bravissimo_inventory_control_management.supplier (supplier_id),
 	cost_per_unit FLOAT,
 	full_price_per_unit FLOAT,
 	stock_count INT
@@ -94,15 +94,16 @@ CREATE TABLE IF NOT EXISTS bravissimo_inventory_control_management.product_items
 DROP TABLE IF EXISTS bravissimo_inventory_control_management.customer_order_purchase;
 CREATE TABLE IF NOT EXISTS bravissimo_inventory_control_management.customer_order_purchase (
 	order_id INT PRIMARY KEY,
-	user_reference TEXT REFERENCES inventory_control_management.user_login (user_reference),
-	postcode TEXT REFERENCES inventory_control_management.user_login (postcode),
+	user_reference TEXT REFERENCES bravissimo_inventory_control_management.user_login (user_reference),
+	postcode TEXT REFERENCES bravissimo_inventory_control_management.user_login (postcode),
 	date_of_purchase DATE,
-	items_ordered TEXT REFERENCES inventory_control_management.product_items(item_code),
-	items_ordered TEXT REFERENCES inventory_control_management.product_items(item_colour),
-	items_ordered TEXT REFERENCES inventory_control_management.product_items(item_size),
+	item_code TEXT,
+	item_colour TEXT,
+	item_size INT,
 	is_delivered BOOLEAN,
 	payment_id TEXT,
-	is_paid BOOLEAN
-	
+	is_paid BOOLEAN,
+	FOREIGN KEY (item_code, item_colour, item_size)
+		REFERENCES bravissimo_inventory_control_management.product_items (item_code, item_colour, item_size)
 );
 
