@@ -88,8 +88,8 @@ CREATE TABLE IF NOT EXISTS bravissimo_inventory_control_management.product_items
 
 -- 6. Creating table for when the customer purchased an item from Bravissimo 
 -- Primary key is the order_id 
--- Referencing / connecting the the this table with the 'user_reference' and 'postcode' from 'user_login' table
--- Referencing / connecting the the this table with the 'item_code', 'item_colour', and 'item size' from 'product_item' table
+-- Referencing / connecting this table with the 'user_reference' and 'postcode' from 'user_login' table
+-- Referencing / connecting the this table with the 'item_code', 'item_colour', and 'item size' from 'product_item' table
 
 DROP TABLE IF EXISTS bravissimo_inventory_control_management.customer_order_purchase;
 CREATE TABLE IF NOT EXISTS bravissimo_inventory_control_management.customer_order_purchase (
